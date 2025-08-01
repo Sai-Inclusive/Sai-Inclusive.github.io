@@ -1,30 +1,95 @@
-# Nangayaaariworks clone
+# SAI Inclusive - Beauty & Fashion Studio
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+Welcome to SAI Inclusive's official website repository. We are a premium beauty and fashion studio specializing in bridal services, traditional Aari work, custom garments, and comprehensive beauty treatments.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/tinfoil-cusp-clip-2908s-projects/v0-sai-inclusive)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/Trwkv42O4sj)
+[![Live Website](https://img.shields.io/badge/Website-Live-green?style=for-the-badge&logo=vercel)](https://saiinclusive.app)
+[![Instagram](https://img.shields.io/badge/Instagram-Follow-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/sai_inclusive)
 
-## Overview
+## 🌟 About SAI Inclusive
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+SAI Inclusive focuses on bridal and customized design works with a commitment to quality, skills, and passion. Our Aari work emphasizes tradition through time-honored techniques and unique designs, using high-quality materials that reflect your artistic vision and enhance your style and confidence.
 
-## Deployment
+### 🏢 Location & Service Area
+- **Studio Address**: 186, Main Rd, NGL road, Valliyur, Vadakkuvalliyur, Tamil Nadu - 627117
+- **Service Area**: Valliyur, Vadakkuvalliyur, and nearby regions
+- **Online Services**: Booking and delivery available throughout the region
 
-Your project is live at:
+## 💄 Our Services
 
-**[https://vercel.com/tinfoil-cusp-clip-2908s-projects/v0-sai-inclusive](https://vercel.com/tinfoil-cusp-clip-2908s-projects/v0-sai-inclusive)**
+### Bridal Services
+- **Bridal Makeup**: Complete wedding day makeup with premium products
+- **Bridal Aari Work**: Traditional hand-embroidered designs for blouses
+- **Bridal Consultations**: Pre-wedding trials and styling sessions
 
-## Build your app
+### Fashion & Garments
+- **Custom Garment Design**: Tailored clothing for all occasions
+- **Kids Wear**: Beautiful and comfortable children's clothing
+- **Alterations & Fittings**: Perfect fit guarantee
 
-Continue building your app on:
+### Beauty & Wellness
+- **Professional Skincare**: Advanced skincare treatments
+- **Makeover Services**: Complete beauty transformations
+- **Beauty Consultations**: Personalized beauty advice
 
-**[https://v0.dev/chat/projects/Trwkv42O4sj](https://v0.dev/chat/projects/Trwkv42O4sj)**
+## 🛠️ Technical Stack
 
-## How It Works
+This website is built with modern web technologies:
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+- **Framework**: Next.js 15.2.4 with React 19
+- **Styling**: Tailwind CSS with custom components
+- **UI Components**: Radix UI primitives
+- **Icons**: Lucide React
+- **Forms**: React Hook Form with Zod validation
+- **Deployment**: Vercel
+- **TypeScript**: Full type safety
+
+## 🚀 Website Features
+
+- **Responsive Design**: Optimized for all devices
+- **Interactive Gallery**: Showcase of our work
+- **Online Booking**: WhatsApp integration for appointments
+- **Contact Forms**: Easy communication channels
+- **Location Maps**: Integrated Google Maps
+- **SEO Optimized**: Better search engine visibility
+
+## 📱 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- pnpm (recommended package manager)
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/Sai-Inclusive/Sai-Inclusive.github.io.git
+
+# Navigate to project directory
+cd Sai-Inclusive.github.io
+
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+```
+
+### Available Scripts
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+
+## 📞 Contact Us
+
+- **Phone**: Book appointments via WhatsApp
+- **Instagram**: [@sai_inclusive](https://www.instagram.com/sai_inclusive)
+- **Address**: 186, Main Rd, NGL road, Valliyur, Vadakkuvalliyur, Tamil Nadu - 627117
+- **Hours**: Monday - Saturday, 10:00 AM - 8:00 PM
+
+## 📄 License
+
+This project is proprietary software owned by SAI Inclusive. All rights reserved.
+
+---
+
+*Enhancing your style and confidence with traditional craftsmanship and modern techniques.*

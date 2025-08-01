@@ -79,14 +79,16 @@ export default function HomePage() {
                   </Button>
                 </BookingModal>
 
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-black text-black hover:bg-black hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 bg-transparent"
-                >
-                  <Instagram className="w-5 h-5 mr-2" />
-                  Follow us in Instagram
-                </Button>
+                <Link href="https://www.instagram.com/sai_inclusive" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-black text-black hover:bg-black hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 bg-transparent"
+                  >
+                    <Instagram className="w-5 h-5 mr-2" />
+                    Follow us on Instagram
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -283,8 +285,17 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="bg-gray-100 rounded-lg h-80 flex items-center justify-center">
-              <p className="text-gray-500">Google Maps Integration</p>
+            <div className="bg-gray-100 rounded-lg h-80 overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947.2066021852256!2d77.6091713!3d8.3813288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0467f37c160ab1%3A0x4d0637f095e83b9f!2sSAI%20Beauty%20Parlour%20and%20Designer!5e0!3m2!1sen!2sin!4v1754031819442!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="SAI INCLUSIVE Location"
+              ></iframe>
             </div>
           </div>
         </div>

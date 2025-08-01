@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, X, Share2 } from "lucide-react"
 
@@ -200,6 +200,9 @@ export default function ImageGallery() {
       {/* Image Modal */}
       <Dialog open={selectedImage !== null} onOpenChange={() => setSelectedImage(null)}>
         <DialogContent className="max-w-4xl w-full h-[90vh] p-0 bg-black/95">
+          <DialogTitle className="sr-only">
+            {selectedImageData ? selectedImageData.title : "Image Gallery"}
+          </DialogTitle>
           {selectedImageData && (
             <div className="relative w-full h-full flex items-center justify-center">
               {/* Close Button */}

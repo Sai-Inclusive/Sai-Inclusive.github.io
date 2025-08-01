@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Phone, MessageCircle, MapPin, Instagram, Mail, Clock } from "lucide-react"
 
 export default function Footer() {
@@ -9,8 +10,14 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-gray-600 to-black rounded-full flex items-center justify-center shadow-md">
-                <span className="text-white font-bold text-sm">SI</span>
+              <div className="w-10 h-10 relative">
+                <Image
+                  src="/assets/apple-icon-180x180.png"
+                  alt="SAI INCLUSIVE Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-full shadow-md"
+                />
               </div>
               <div>
                 <div className="font-bold text-lg">SAI INCLUSIVE</div>

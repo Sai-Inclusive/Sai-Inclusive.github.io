@@ -10,8 +10,62 @@ import Navbar from "@/components/navbar"
 import WhatsAppFloat from "@/components/whatsapp-float"
 import Footer from "@/components/footer"
 import BookingModal from "@/components/booking-modal"
+import { useState } from "react"
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: ''
+  })
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value ?? ''
+    }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    // Create email content
+    const subject = `Contact Form Submission from ${formData.firstName} ${formData.lastName}`
+    const body = `
+Hello,
+
+You have received a new contact form submission from your website:
+
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Service Interested In: ${formData.service}
+
+Message:
+${formData.message}
+
+Best regards,
+Website Contact Form
+    `.trim()
+
+    // Open default email client with pre-filled content
+    const mailtoLink = `mailto:saiinclusive@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    window.location.href = mailtoLink
+
+    // Reset form after submission
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      service: '',
+      message: ''
+    })
+  }
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -37,45 +91,85 @@ export default function ContactPage() {
             <Card className="shadow-xl border-0">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h2>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                      <Input placeholder="Your first name" className="border-gray-300" />
+                      <Input 
+                        name="firstName"
+                        value={formData.firstName || ''}
+                        onChange={handleInputChange}
+                        placeholder="Your first name" 
+                        className="border-gray-300" 
+                        required
+                      />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                      <Input placeholder="Your last name" className="border-gray-300" />
+                      <Input 
+                        name="lastName"
+                        value={formData.lastName || ''}
+                        onChange={handleInputChange}
+                        placeholder="Your last name" 
+                        className="border-gray-300" 
+                        required
+                      />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                    <Input type="email" placeholder="your.email@example.com" className="border-gray-300" />
+                    <Input 
+                      type="email" 
+                      name="email"
+                      value={formData.email || ''}
+                      onChange={handleInputChange}
+                      placeholder="your.email@example.com" 
+                      className="border-gray-300" 
+                      required
+                    />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                    <Input type="tel" placeholder="+91 96007 45796" className="border-gray-300" />
+                    <Input 
+                      type="tel" 
+                      name="phone"
+                      value={formData.phone || ''}
+                      onChange={handleInputChange}
+                      placeholder="+91 96007 45796" 
+                      className="border-gray-300" 
+                      required
+                    />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Service Interested In</label>
-                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-black">
-                      <option>Select a service</option>
-                      <option>Bridal Makeup</option>
-                      <option>Bridal Aari Work</option>
-                      <option>Customize Garment</option>
-                      <option>Kids Wear</option>
-                      <option>Skin Care</option>
+                    <select 
+                      name="service"
+                      value={formData.service || ''}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-black"
+                      required
+                    >
+                      <option value="">Select a service</option>
+                      <option value="Bridal Makeup">Bridal Makeup</option>
+                      <option value="Bridal Aari Work">Bridal Aari Work</option>
+                      <option value="Customize Garment">Customize Garment</option>
+                      <option value="Kids Wear">Kids Wear</option>
+                      <option value="Skin Care">Skin Care</option>
                     </select>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                     <Textarea
+                      name="message"
+                      value={formData.message || ''}
+                      onChange={handleInputChange}
                       placeholder="Tell us about your requirements..."
                       className="border-gray-300 min-h-[120px]"
+                      required
                     />
                   </div>
 
@@ -272,12 +366,17 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-gray-100 rounded-lg h-80 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-500">Interactive Map</p>
-                <p className="text-sm text-gray-400">Google Maps integration would go here</p>
-              </div>
+            <div className="bg-gray-100 rounded-lg h-80 overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947.2066021852256!2d77.6091713!3d8.3813288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0467f37c160ab1%3A0x4d0637f095e83b9f!2sSAI%20Beauty%20Parlour%20and%20Designer!5e0!3m2!1sen!2sin!4v1754031819442!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="SAI INCLUSIVE Location"
+              ></iframe>
             </div>
           </div>
         </div>

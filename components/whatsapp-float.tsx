@@ -16,7 +16,7 @@ export default function WhatsAppFloat() {
       <Button
         onClick={handleWhatsAppClick}
         size="lg"
-        className="bg-green-500 hover:bg-green-600 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse hover:animate-none"
+        className="bg-green-500 hover:bg-green-600 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all"
       >
         <MessageCircle className="w-6 h-6" />
         <span className="sr-only">Contact us on WhatsApp</span>

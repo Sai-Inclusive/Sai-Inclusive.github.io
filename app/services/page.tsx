@@ -19,7 +19,7 @@ export default function ServicesPage() {
         "Premium products",
         "Client satisfaction focus",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/assets/BridalMakeUp/1.png",
       icon: "💄",
     },
     {
@@ -33,7 +33,7 @@ export default function ServicesPage() {
         "Artistic vision focus",
         "Expert craftsmanship",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/assets/BridalArriWorks/1.png",
       icon: "🪡",
     },
     {
@@ -47,7 +47,7 @@ export default function ServicesPage() {
         "Skill & passion",
         "Perfect fitting",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/assets/CustomizeGarments/1.png",
       icon: "👗",
     },
     {
@@ -61,7 +61,7 @@ export default function ServicesPage() {
         "Durable quality",
         "Age-appropriate styles",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/assets/KidsWear/1.jpg",
       icon: "👶",
     },
     {
@@ -75,7 +75,7 @@ export default function ServicesPage() {
         "Confidence enhancement",
         "Expert consultation",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/assets/SkinCare/spa-treatment-product-female-feet-hand-spa.jpg",
       icon: "✨",
     },
   ]

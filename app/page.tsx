@@ -14,31 +14,31 @@ export default function HomePage() {
     {
       title: "Bridal Makeup",
       description: "Professional bridal makeup services for your special day",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/assets/BridalMakeUp/1.png",
       icon: "💄",
     },
     {
       title: "Bridal Aari Work",
       description: "Exquisite traditional aari work for bridal blouses",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/assets/BridalArriWorks/1.png",
       icon: "🪡",
     },
     {
       title: "Customize Garment",
       description: "Custom tailoring and garment design services",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/assets/CustomizeGarments/1.png",
       icon: "👗",
     },
     {
       title: "Kids Wear",
       description: "Beautiful and comfortable clothing for children",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/assets/KidsWear/1.jpg",
       icon: "👶",
     },
     {
       title: "Skin Care",
       description: "Professional skincare treatments and consultations",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/assets/SkinCare/spa-treatment-product-female-feet-hand-spa.jpg",
       icon: "✨",
     },
   ]
@@ -97,7 +97,7 @@ export default function HomePage() {
               <div className="relative">
                 <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white shadow-2xl">
                   <Image
-                    src="/placeholder.svg?height=400&width=400"
+                    src="/assets/Sai-logo.png"
                     alt="SAI Inclusive Beauty Services"
                     width={400}
                     height={400}
@@ -156,7 +156,7 @@ export default function HomePage() {
             <div className="flex justify-center">
               <div className="relative">
                 <Image
-                  src="/placeholder.svg?height=400&width=350"
+                  src="/assets/Sai-logo.png"
                   alt="About SAI Inclusive"
                   width={350}
                   height={400}

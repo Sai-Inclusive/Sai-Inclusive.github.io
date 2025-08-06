@@ -314,7 +314,7 @@ Website Contact Form
             <div className="flex justify-center">
               <div className="relative">
                 <Image
-                  src="/placeholder.svg?height=400&width=350"
+                  src="/assets/Sai-logo.png"
                   alt="About SAI Inclusive Team"
                   width={350}
                   height={400}

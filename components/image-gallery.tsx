@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, X, Share2 } from "lucide-react"
+import { ChevronLeft, ChevronRight, X, Share2, Play, Pause } from "lucide-react"
 
 interface GalleryImage {
   id: number
@@ -17,92 +17,239 @@ interface GalleryImage {
 export default function ImageGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
+  const [currentPage, setCurrentPage] = useState(0)
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true)
+  const autoScrollRef = useRef<NodeJS.Timeout | null>(null)
+  
+  // Touch/Swipe state
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  
+  // Configuration
+  const IMAGES_PER_PAGE = 8 // 8 images per page for better mobile experience
+  const AUTO_SCROLL_INTERVAL = 8000 // 8 seconds
+  const MIN_SWIPE_DISTANCE = 50 // Minimum distance for a swipe to be registered
 
-  // Sample gallery images - replace with your actual images
+  // Gallery images with actual photos
   const galleryImages: GalleryImage[] = [
+    // Bridal Makeup Images
     {
       id: 1,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Bridal Makeup Look 1",
+      src: "/assets/BridalMakeUp/1.png",
+      alt: "Professional Bridal Makeup Look 1",
       category: "makeup",
       title: "Traditional Bridal Makeup",
     },
     {
       id: 2,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Aari Work Design 1",
-      category: "aari",
-      title: "Intricate Aari Embroidery",
-    },
-    {
-      id: 3,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Custom Garment 1",
-      category: "garment",
-      title: "Custom Designer Blouse",
-    },
-    {
-      id: 4,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Kids Wear 1",
-      category: "kids",
-      title: "Adorable Kids Outfit",
-    },
-    {
-      id: 5,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Skincare Treatment",
-      category: "skincare",
-      title: "Glowing Skin Treatment",
-    },
-    {
-      id: 6,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Bridal Makeup Look 2",
+      src: "/assets/BridalMakeUp/2.png",
+      alt: "Professional Bridal Makeup Look 2",
       category: "makeup",
       title: "Modern Bridal Look",
     },
     {
-      id: 7,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Aari Work Design 2",
-      category: "aari",
-      title: "Golden Thread Aari Work",
-    },
-    {
-      id: 8,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Custom Garment 2",
-      category: "garment",
-      title: "Elegant Evening Wear",
-    },
-    {
-      id: 9,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Kids Wear 2",
-      category: "kids",
-      title: "Festive Kids Collection",
-    },
-    {
-      id: 10,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Bridal Makeup Look 3",
+      id: 3,
+      src: "/assets/BridalMakeUp/3.png",
+      alt: "Professional Bridal Makeup Look 3",
       category: "makeup",
       title: "South Indian Bridal Style",
     },
     {
-      id: 11,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Aari Work Design 3",
+      id: 4,
+      src: "/assets/BridalMakeUp/4.jpg",
+      alt: "Professional Bridal Makeup Look 4",
+      category: "makeup",
+      title: "Elegant Bridal Makeup",
+    },
+    {
+      id: 5,
+      src: "/assets/BridalMakeUp/5.jpg",
+      alt: "Professional Bridal Makeup Look 5",
+      category: "makeup",
+      title: "Glamorous Bridal Look",
+    },
+    {
+      id: 6,
+      src: "/assets/BridalMakeUp/6.jpg",
+      alt: "Professional Bridal Makeup Look 6",
+      category: "makeup",
+      title: "Classic Bridal Style",
+    },
+    
+    // Bridal Aari Work Images
+    {
+      id: 7,
+      src: "/assets/BridalArriWorks/1.png",
+      alt: "Intricate Aari Work Design 1",
+      category: "aari",
+      title: "Intricate Aari Embroidery",
+    },
+    {
+      id: 8,
+      src: "/assets/BridalArriWorks/2.png",
+      alt: "Intricate Aari Work Design 2",
+      category: "aari",
+      title: "Golden Thread Aari Work",
+    },
+    {
+      id: 9,
+      src: "/assets/BridalArriWorks/3.png",
+      alt: "Intricate Aari Work Design 3",
       category: "aari",
       title: "Floral Aari Pattern",
     },
     {
+      id: 10,
+      src: "/assets/BridalArriWorks/4.png",
+      alt: "Intricate Aari Work Design 4",
+      category: "aari",
+      title: "Traditional Aari Design",
+    },
+    {
+      id: 11,
+      src: "/assets/BridalArriWorks/5.png",
+      alt: "Intricate Aari Work Design 5",
+      category: "aari",
+      title: "Detailed Aari Embroidery",
+    },
+    {
       id: 12,
-      src: "/placeholder.svg?height=400&width=400",
-      alt: "Custom Garment 3",
+      src: "/assets/BridalArriWorks/6.png",
+      alt: "Intricate Aari Work Design 6",
+      category: "aari",
+      title: "Artistic Aari Work",
+    },
+    
+    // Custom Garments Images
+    {
+      id: 13,
+      src: "/assets/CustomizeGarments/1.png",
+      alt: "Custom Garment Design 1",
+      category: "garment",
+      title: "Custom Designer Blouse",
+    },
+    {
+      id: 14,
+      src: "/assets/CustomizeGarments/2.jpg",
+      alt: "Custom Garment Design 2",
+      category: "garment",
+      title: "Elegant Evening Wear",
+    },
+    {
+      id: 15,
+      src: "/assets/CustomizeGarments/3.jpg",
+      alt: "Custom Garment Design 3",
       category: "garment",
       title: "Wedding Guest Outfit",
+    },
+    {
+      id: 16,
+      src: "/assets/CustomizeGarments/4.jpg",
+      alt: "Custom Garment Design 4",
+      category: "garment",
+      title: "Designer Saree Blouse",
+    },
+    {
+      id: 17,
+      src: "/assets/CustomizeGarments/5.jpg",
+      alt: "Custom Garment Design 5",
+      category: "garment",
+      title: "Custom Tailored Dress",
+    },
+    {
+      id: 18,
+      src: "/assets/CustomizeGarments/6.jpg",
+      alt: "Custom Garment Design 6",
+      category: "garment",
+      title: "Bespoke Fashion Design",
+    },
+    
+    // Kids Wear Images
+    {
+      id: 19,
+      src: "/assets/KidsWear/1.jpg",
+      alt: "Kids Wear Design 1",
+      category: "kids",
+      title: "Adorable Kids Outfit",
+    },
+    {
+      id: 20,
+      src: "/assets/KidsWear/2.jpg",
+      alt: "Kids Wear Design 2",
+      category: "kids",
+      title: "Festive Kids Collection",
+    },
+    {
+      id: 21,
+      src: "/assets/KidsWear/3.jpg",
+      alt: "Kids Wear Design 3",
+      category: "kids",
+      title: "Traditional Kids Wear",
+    },
+    {
+      id: 22,
+      src: "/assets/KidsWear/4.jpg",
+      alt: "Kids Wear Design 4",
+      category: "kids",
+      title: "Party Wear for Kids",
+    },
+    {
+      id: 23,
+      src: "/assets/KidsWear/5.png",
+      alt: "Kids Wear Design 5",
+      category: "kids",
+      title: "Cute Kids Fashion",
+    },
+    {
+      id: 24,
+      src: "/assets/KidsWear/6.png",
+      alt: "Kids Wear Design 6",
+      category: "kids",
+      title: "Designer Kids Outfit",
+    },
+    {
+      id: 25,
+      src: "/assets/KidsWear/7.jpg",
+      alt: "Kids Wear Design 7",
+      category: "kids",
+      title: "Children's Special Wear",
+    },
+    
+    // Skincare Images
+    {
+      id: 26,
+      src: "/assets/SkinCare/hairdresser-colored-hair-her-client-hair-salon.jpg",
+      alt: "Professional Hair Coloring Service",
+      category: "skincare",
+      title: "Hair Coloring Treatment",
+    },
+    {
+      id: 27,
+      src: "/assets/SkinCare/high-angle-woman-getting-massaged.jpg",
+      alt: "Professional Massage Therapy",
+      category: "skincare",
+      title: "Relaxing Massage Therapy",
+    },
+    {
+      id: 28,
+      src: "/assets/SkinCare/spa-treatment-product-female-feet-hand-spa.jpg",
+      alt: "Spa Treatment for Hands and Feet",
+      category: "skincare",
+      title: "Hand & Foot Spa Treatment",
+    },
+    {
+      id: 29,
+      src: "/assets/SkinCare/woman-getting-treatment-hairdresser-shop.jpg",
+      alt: "Professional Hair Treatment",
+      category: "skincare",
+      title: "Hair Care Treatment",
+    },
+    {
+      id: 30,
+      src: "/assets/SkinCare/woman-washing-head.png",
+      alt: "Professional Hair Washing Service",
+      category: "skincare",
+      title: "Hair Washing & Care",
     },
   ]
 
@@ -118,7 +265,67 @@ export default function ImageGallery() {
   const filteredImages =
     selectedCategory === "all" ? galleryImages : galleryImages.filter((img) => img.category === selectedCategory)
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredImages.length / IMAGES_PER_PAGE)
+  const startIndex = currentPage * IMAGES_PER_PAGE
+  const endIndex = startIndex + IMAGES_PER_PAGE
+  const currentImages = filteredImages.slice(startIndex, endIndex)
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (isAutoScrolling && totalPages > 1) {
+      autoScrollRef.current = setInterval(() => {
+        setCurrentPage((prev) => (prev + 1) % totalPages)
+      }, AUTO_SCROLL_INTERVAL)
+    } else {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current)
+        autoScrollRef.current = null
+      }
+    }
+
+    return () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current)
+      }
+    }
+  }, [isAutoScrolling, totalPages])
+
+  // Reset to first page when category changes
+  useEffect(() => {
+    setCurrentPage(0)
+  }, [selectedCategory])
+
+  // Pause auto-scroll when user interacts
+  const handleUserInteraction = () => {
+    setIsAutoScrolling(false)
+    if (autoScrollRef.current) {
+      clearInterval(autoScrollRef.current)
+      autoScrollRef.current = null
+    }
+  }
+
+  const handlePageChange = (newPage: number) => {
+    handleUserInteraction()
+    setCurrentPage(newPage)
+  }
+
+  const handlePreviousPage = () => {
+    const newPage = currentPage > 0 ? currentPage - 1 : totalPages - 1
+    handlePageChange(newPage)
+  }
+
+  const handleNextPage = () => {
+    const newPage = (currentPage + 1) % totalPages
+    handlePageChange(newPage)
+  }
+
+  const toggleAutoScroll = () => {
+    setIsAutoScrolling(!isAutoScrolling)
+  }
+
   const handleImageClick = (imageId: number) => {
+    handleUserInteraction()
     setSelectedImage(imageId)
   }
 
@@ -137,6 +344,32 @@ export default function ImageGallery() {
   }
 
   const selectedImageData = galleryImages.find((img) => img.id === selectedImage)
+
+  // Touch/Swipe handlers
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null) // Otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > MIN_SWIPE_DISTANCE
+    const isRightSwipe = distance < -MIN_SWIPE_DISTANCE
+
+    if (totalPages > 1 && (isLeftSwipe || isRightSwipe)) {
+      if (isLeftSwipe) {
+        handleNextPage() // Swipe left = next page
+      } else if (isRightSwipe) {
+        handlePreviousPage() // Swipe right = previous page
+      }
+    }
+  }
 
   const handleShare = async () => {
     if (selectedImageData && navigator.share) {
@@ -172,9 +405,16 @@ export default function ImageGallery() {
         ))}
       </div>
 
+
+
       {/* Image Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredImages.map((image) => (
+      <div 
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 min-h-[400px]"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        {currentImages.map((image, index) => (
           <div
             key={image.id}
             className="group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
@@ -187,6 +427,9 @@ export default function ImageGallery() {
                 width={400}
                 height={400}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                loading={index < 4 ? "eager" : "lazy"} // Load first 4 images immediately, others lazily
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
             </div>
             <div className="p-3 bg-white">
@@ -196,6 +439,58 @@ export default function ImageGallery() {
           </div>
         ))}
       </div>
+
+      {/* Page Indicators */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center mt-6 gap-3">
+          <Button
+            onClick={handlePreviousPage}
+            variant="outline"
+            size="sm"
+            className="rounded-full w-8 h-8 p-0"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </Button>
+          
+          <div className="flex gap-2">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePageChange(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentPage
+                    ? "bg-black scale-125"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Go to page ${index + 1}`}
+              />
+            ))}
+          </div>
+          
+          <Button
+            onClick={toggleAutoScroll}
+            variant="ghost"
+            size="sm"
+            className="rounded-full w-8 h-8 p-0"
+            title={isAutoScrolling ? "Pause auto-scroll" : "Resume auto-scroll"}
+          >
+            {isAutoScrolling ? (
+              <Pause className="w-3 h-3" />
+            ) : (
+              <Play className="w-3 h-3" />
+            )}
+          </Button>
+          
+          <Button
+            onClick={handleNextPage}
+            variant="outline"
+            size="sm"
+            className="rounded-full w-8 h-8 p-0"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </Button>
+        </div>
+      )}
 
       {/* Image Modal */}
       <Dialog open={selectedImage !== null} onOpenChange={() => setSelectedImage(null)}>

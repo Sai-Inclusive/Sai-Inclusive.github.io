@@ -7,7 +7,9 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "export": "next build && npx next-image-export-optimizer"
+    "export": "npx next-image-export-optimizer",
+    "clean": "rimraf .next out public/next-image-export-optimizer-hashes.json && node scripts/clean-images.js",
+    "fresh-export": "npm run clean && npm run export"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -67,6 +69,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "postcss": "^8.5",
+    "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }

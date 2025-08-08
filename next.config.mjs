@@ -13,6 +13,7 @@ const nextConfig = {
     imageSizes: [128, 256, 384],
     deviceSizes: [1080, 1920, 3840],
     formats: ['image/webp'],
+    unoptimized: false, // Enable optimization for static export
   },
   env: {
     nextImageExportOptimizer_imageFolderPath: "public",
@@ -27,6 +28,7 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,
+  assetPrefix: '',
 }
 
 export default nextConfig

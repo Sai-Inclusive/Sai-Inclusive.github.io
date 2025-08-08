@@ -48,8 +48,8 @@ jobs:
           # server side image optimization (so it can work with static export).
           static_site_generator: next
           
-      - name: Build with Next.js
-        run: pnpm build
+      - name: Build and optimize images
+        run: pnpm export
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

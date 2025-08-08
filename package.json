@@ -9,7 +9,8 @@
     "start": "next start",
     "export": "npx next-image-export-optimizer",
     "clean": "rimraf .next out public/next-image-export-optimizer-hashes.json && node scripts/clean-images.js",
-    "fresh-export": "npm run clean && npm run export"
+    "fresh-export": "npm run clean && npm run export",
+    "generate-sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

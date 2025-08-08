@@ -13,6 +13,243 @@ interface GalleryImage {
   category: string
   title: string
 }
+  
+// Configuration
+const IMAGES_PER_PAGE = 8 // 8 images per page for better mobile experience
+const AUTO_SCROLL_INTERVAL = 8000 // 8 seconds
+const MIN_SWIPE_DISTANCE = 50 // Minimum distance for a swipe to be registered
+
+// Gallery images with actual photos
+const galleryImages: GalleryImage[] = [
+  // Bridal Makeup Images
+  {
+    id: 1,
+    src: "/assets/BridalMakeUp/1.png",
+    alt: "Professional Bridal Makeup Look 1",
+    category: "makeup",
+    title: "Traditional Bridal Makeup",
+  },
+  {
+    id: 2,
+    src: "/assets/BridalMakeUp/2.png",
+    alt: "Professional Bridal Makeup Look 2",
+    category: "makeup",
+    title: "Modern Bridal Look",
+  },
+  {
+    id: 3,
+    src: "/assets/BridalMakeUp/3.png",
+    alt: "Professional Bridal Makeup Look 3",
+    category: "makeup",
+    title: "South Indian Bridal Style",
+  },
+  {
+    id: 4,
+    src: "/assets/BridalMakeUp/4.jpg",
+    alt: "Professional Bridal Makeup Look 4",
+    category: "makeup",
+    title: "Elegant Bridal Makeup",
+  },
+  {
+    id: 5,
+    src: "/assets/BridalMakeUp/5.jpg",
+    alt: "Professional Bridal Makeup Look 5",
+    category: "makeup",
+    title: "Glamorous Bridal Look",
+  },
+  {
+    id: 6,
+    src: "/assets/BridalMakeUp/6.jpg",
+    alt: "Professional Bridal Makeup Look 6",
+    category: "makeup",
+    title: "Classic Bridal Style",
+  },
+  
+  // Bridal Aari Work Images
+  {
+    id: 7,
+    src: "/assets/BridalArriWorks/1.png",
+    alt: "Intricate Aari Work Design 1",
+    category: "aari",
+    title: "Intricate Aari Embroidery",
+  },
+  {
+    id: 8,
+    src: "/assets/BridalArriWorks/2.png",
+    alt: "Intricate Aari Work Design 2",
+    category: "aari",
+    title: "Golden Thread Aari Work",
+  },
+  {
+    id: 9,
+    src: "/assets/BridalArriWorks/3.png",
+    alt: "Intricate Aari Work Design 3",
+    category: "aari",
+    title: "Floral Aari Pattern",
+  },
+  {
+    id: 10,
+    src: "/assets/BridalArriWorks/4.png",
+    alt: "Intricate Aari Work Design 4",
+    category: "aari",
+    title: "Traditional Aari Design",
+  },
+  {
+    id: 11,
+    src: "/assets/BridalArriWorks/5.png",
+    alt: "Intricate Aari Work Design 5",
+    category: "aari",
+    title: "Detailed Aari Embroidery",
+  },
+  {
+    id: 12,
+    src: "/assets/BridalArriWorks/6.png",
+    alt: "Intricate Aari Work Design 6",
+    category: "aari",
+    title: "Artistic Aari Work",
+  },
+  
+  // Custom Garments Images
+  {
+    id: 13,
+    src: "/assets/CustomizeGarments/1.png",
+    alt: "Custom Garment Design 1",
+    category: "garment",
+    title: "Custom Designer Blouse",
+  },
+  {
+    id: 14,
+    src: "/assets/CustomizeGarments/2.jpg",
+    alt: "Custom Garment Design 2",
+    category: "garment",
+    title: "Elegant Evening Wear",
+  },
+  {
+    id: 15,
+    src: "/assets/CustomizeGarments/3.jpg",
+    alt: "Custom Garment Design 3",
+    category: "garment",
+    title: "Wedding Guest Outfit",
+  },
+  {
+    id: 16,
+    src: "/assets/CustomizeGarments/4.jpg",
+    alt: "Custom Garment Design 4",
+    category: "garment",
+    title: "Designer Saree Blouse",
+  },
+  {
+    id: 17,
+    src: "/assets/CustomizeGarments/5.jpg",
+    alt: "Custom Garment Design 5",
+    category: "garment",
+    title: "Custom Tailored Dress",
+  },
+  {
+    id: 18,
+    src: "/assets/CustomizeGarments/6.jpg",
+    alt: "Custom Garment Design 6",
+    category: "garment",
+    title: "Bespoke Fashion Design",
+  },
+  
+  // Kids Wear Images
+  {
+    id: 19,
+    src: "/assets/KidsWear/1.jpg",
+    alt: "Kids Wear Design 1",
+    category: "kids",
+    title: "Adorable Kids Outfit",
+  },
+  {
+    id: 20,
+    src: "/assets/KidsWear/2.jpg",
+    alt: "Kids Wear Design 2",
+    category: "kids",
+    title: "Festive Kids Collection",
+  },
+  {
+    id: 21,
+    src: "/assets/KidsWear/3.jpg",
+    alt: "Kids Wear Design 3",
+    category: "kids",
+    title: "Traditional Kids Wear",
+  },
+  {
+    id: 22,
+    src: "/assets/KidsWear/4.jpg",
+    alt: "Kids Wear Design 4",
+    category: "kids",
+    title: "Party Wear for Kids",
+  },
+  {
+    id: 23,
+    src: "/assets/KidsWear/5.png",
+    alt: "Kids Wear Design 5",
+    category: "kids",
+    title: "Cute Kids Fashion",
+  },
+  {
+    id: 24,
+    src: "/assets/KidsWear/6.png",
+    alt: "Kids Wear Design 6",
+    category: "kids",
+    title: "Designer Kids Outfit",
+  },
+  {
+    id: 25,
+    src: "/assets/KidsWear/7.jpg",
+    alt: "Kids Wear Design 7",
+    category: "kids",
+    title: "Children's Special Wear",
+  },
+  
+  // Skincare Images
+  {
+    id: 26,
+    src: "/assets/SkinCare/hairdresser-colored-hair-her-client-hair-salon.jpg",
+    alt: "Professional Hair Coloring Service",
+    category: "skincare",
+    title: "Hair Coloring Treatment",
+  },
+  {
+    id: 27,
+    src: "/assets/SkinCare/high-angle-woman-getting-massaged.jpg",
+    alt: "Professional Massage Therapy",
+    category: "skincare",
+    title: "Relaxing Massage Therapy",
+  },
+  {
+    id: 28,
+    src: "/assets/SkinCare/spa-treatment-product-female-feet-hand-spa.jpg",
+    alt: "Spa Treatment for Hands and Feet",
+    category: "skincare",
+    title: "Hand & Foot Spa Treatment",
+  },
+  {
+    id: 29,
+    src: "/assets/SkinCare/woman-getting-treatment-hairdresser-shop.jpg",
+    alt: "Professional Hair Treatment",
+    category: "skincare",
+    title: "Hair Care Treatment",
+  },
+  {
+    id: 30,
+    src: "/assets/SkinCare/woman-washing-head.png",
+    alt: "Professional Hair Washing Service",
+    category: "skincare",
+    title: "Hair Washing & Care",
+  },
+]
+
+const categories = [
+  { id: "all", name: "All Work", count: galleryImages.length },
+  { id: "makeup", name: "Bridal Makeup", count: galleryImages.filter((img) => img.category === "makeup").length },
+  { id: "aari", name: "Aari Work", count: galleryImages.filter((img) => img.category === "aari").length },
+  { id: "garment", name: "Custom Garments", count: galleryImages.filter((img) => img.category === "garment").length },
+  { id: "kids", name: "Kids Wear", count: galleryImages.filter((img) => img.category === "kids").length },
+  { id: "skincare", name: "Skincare", count: galleryImages.filter((img) => img.category === "skincare").length },
+]
 
 export default function ImageGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
@@ -24,243 +261,6 @@ export default function ImageGallery() {
   // Touch/Swipe state
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
-  
-  // Configuration
-  const IMAGES_PER_PAGE = 8 // 8 images per page for better mobile experience
-  const AUTO_SCROLL_INTERVAL = 8000 // 8 seconds
-  const MIN_SWIPE_DISTANCE = 50 // Minimum distance for a swipe to be registered
-
-  // Gallery images with actual photos
-  const galleryImages: GalleryImage[] = [
-    // Bridal Makeup Images
-    {
-      id: 1,
-      src: "/assets/BridalMakeUp/1.png",
-      alt: "Professional Bridal Makeup Look 1",
-      category: "makeup",
-      title: "Traditional Bridal Makeup",
-    },
-    {
-      id: 2,
-      src: "/assets/BridalMakeUp/2.png",
-      alt: "Professional Bridal Makeup Look 2",
-      category: "makeup",
-      title: "Modern Bridal Look",
-    },
-    {
-      id: 3,
-      src: "/assets/BridalMakeUp/3.png",
-      alt: "Professional Bridal Makeup Look 3",
-      category: "makeup",
-      title: "South Indian Bridal Style",
-    },
-    {
-      id: 4,
-      src: "/assets/BridalMakeUp/4.jpg",
-      alt: "Professional Bridal Makeup Look 4",
-      category: "makeup",
-      title: "Elegant Bridal Makeup",
-    },
-    {
-      id: 5,
-      src: "/assets/BridalMakeUp/5.jpg",
-      alt: "Professional Bridal Makeup Look 5",
-      category: "makeup",
-      title: "Glamorous Bridal Look",
-    },
-    {
-      id: 6,
-      src: "/assets/BridalMakeUp/6.jpg",
-      alt: "Professional Bridal Makeup Look 6",
-      category: "makeup",
-      title: "Classic Bridal Style",
-    },
-    
-    // Bridal Aari Work Images
-    {
-      id: 7,
-      src: "/assets/BridalArriWorks/1.png",
-      alt: "Intricate Aari Work Design 1",
-      category: "aari",
-      title: "Intricate Aari Embroidery",
-    },
-    {
-      id: 8,
-      src: "/assets/BridalArriWorks/2.png",
-      alt: "Intricate Aari Work Design 2",
-      category: "aari",
-      title: "Golden Thread Aari Work",
-    },
-    {
-      id: 9,
-      src: "/assets/BridalArriWorks/3.png",
-      alt: "Intricate Aari Work Design 3",
-      category: "aari",
-      title: "Floral Aari Pattern",
-    },
-    {
-      id: 10,
-      src: "/assets/BridalArriWorks/4.png",
-      alt: "Intricate Aari Work Design 4",
-      category: "aari",
-      title: "Traditional Aari Design",
-    },
-    {
-      id: 11,
-      src: "/assets/BridalArriWorks/5.png",
-      alt: "Intricate Aari Work Design 5",
-      category: "aari",
-      title: "Detailed Aari Embroidery",
-    },
-    {
-      id: 12,
-      src: "/assets/BridalArriWorks/6.png",
-      alt: "Intricate Aari Work Design 6",
-      category: "aari",
-      title: "Artistic Aari Work",
-    },
-    
-    // Custom Garments Images
-    {
-      id: 13,
-      src: "/assets/CustomizeGarments/1.png",
-      alt: "Custom Garment Design 1",
-      category: "garment",
-      title: "Custom Designer Blouse",
-    },
-    {
-      id: 14,
-      src: "/assets/CustomizeGarments/2.jpg",
-      alt: "Custom Garment Design 2",
-      category: "garment",
-      title: "Elegant Evening Wear",
-    },
-    {
-      id: 15,
-      src: "/assets/CustomizeGarments/3.jpg",
-      alt: "Custom Garment Design 3",
-      category: "garment",
-      title: "Wedding Guest Outfit",
-    },
-    {
-      id: 16,
-      src: "/assets/CustomizeGarments/4.jpg",
-      alt: "Custom Garment Design 4",
-      category: "garment",
-      title: "Designer Saree Blouse",
-    },
-    {
-      id: 17,
-      src: "/assets/CustomizeGarments/5.jpg",
-      alt: "Custom Garment Design 5",
-      category: "garment",
-      title: "Custom Tailored Dress",
-    },
-    {
-      id: 18,
-      src: "/assets/CustomizeGarments/6.jpg",
-      alt: "Custom Garment Design 6",
-      category: "garment",
-      title: "Bespoke Fashion Design",
-    },
-    
-    // Kids Wear Images
-    {
-      id: 19,
-      src: "/assets/KidsWear/1.jpg",
-      alt: "Kids Wear Design 1",
-      category: "kids",
-      title: "Adorable Kids Outfit",
-    },
-    {
-      id: 20,
-      src: "/assets/KidsWear/2.jpg",
-      alt: "Kids Wear Design 2",
-      category: "kids",
-      title: "Festive Kids Collection",
-    },
-    {
-      id: 21,
-      src: "/assets/KidsWear/3.jpg",
-      alt: "Kids Wear Design 3",
-      category: "kids",
-      title: "Traditional Kids Wear",
-    },
-    {
-      id: 22,
-      src: "/assets/KidsWear/4.jpg",
-      alt: "Kids Wear Design 4",
-      category: "kids",
-      title: "Party Wear for Kids",
-    },
-    {
-      id: 23,
-      src: "/assets/KidsWear/5.png",
-      alt: "Kids Wear Design 5",
-      category: "kids",
-      title: "Cute Kids Fashion",
-    },
-    {
-      id: 24,
-      src: "/assets/KidsWear/6.png",
-      alt: "Kids Wear Design 6",
-      category: "kids",
-      title: "Designer Kids Outfit",
-    },
-    {
-      id: 25,
-      src: "/assets/KidsWear/7.jpg",
-      alt: "Kids Wear Design 7",
-      category: "kids",
-      title: "Children's Special Wear",
-    },
-    
-    // Skincare Images
-    {
-      id: 26,
-      src: "/assets/SkinCare/hairdresser-colored-hair-her-client-hair-salon.jpg",
-      alt: "Professional Hair Coloring Service",
-      category: "skincare",
-      title: "Hair Coloring Treatment",
-    },
-    {
-      id: 27,
-      src: "/assets/SkinCare/high-angle-woman-getting-massaged.jpg",
-      alt: "Professional Massage Therapy",
-      category: "skincare",
-      title: "Relaxing Massage Therapy",
-    },
-    {
-      id: 28,
-      src: "/assets/SkinCare/spa-treatment-product-female-feet-hand-spa.jpg",
-      alt: "Spa Treatment for Hands and Feet",
-      category: "skincare",
-      title: "Hand & Foot Spa Treatment",
-    },
-    {
-      id: 29,
-      src: "/assets/SkinCare/woman-getting-treatment-hairdresser-shop.jpg",
-      alt: "Professional Hair Treatment",
-      category: "skincare",
-      title: "Hair Care Treatment",
-    },
-    {
-      id: 30,
-      src: "/assets/SkinCare/woman-washing-head.png",
-      alt: "Professional Hair Washing Service",
-      category: "skincare",
-      title: "Hair Washing & Care",
-    },
-  ]
-
-  const categories = [
-    { id: "all", name: "All Work", count: galleryImages.length },
-    { id: "makeup", name: "Bridal Makeup", count: galleryImages.filter((img) => img.category === "makeup").length },
-    { id: "aari", name: "Aari Work", count: galleryImages.filter((img) => img.category === "aari").length },
-    { id: "garment", name: "Custom Garments", count: galleryImages.filter((img) => img.category === "garment").length },
-    { id: "kids", name: "Kids Wear", count: galleryImages.filter((img) => img.category === "kids").length },
-    { id: "skincare", name: "Skincare", count: galleryImages.filter((img) => img.category === "skincare").length },
-  ]
 
   const filteredImages =
     selectedCategory === "all" ? galleryImages : galleryImages.filter((img) => img.category === selectedCategory)
@@ -298,10 +298,12 @@ export default function ImageGallery() {
 
   // Pause auto-scroll when user interacts
   const handleUserInteraction = () => {
-    setIsAutoScrolling(false)
-    if (autoScrollRef.current) {
-      clearInterval(autoScrollRef.current)
-      autoScrollRef.current = null
+    if (isAutoScrolling) {
+      setIsAutoScrolling(false)
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current)
+        autoScrollRef.current = null
+      }
     }
   }
 

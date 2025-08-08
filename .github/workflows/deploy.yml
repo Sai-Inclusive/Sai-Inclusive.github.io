@@ -48,6 +48,13 @@ jobs:
           # server side image optimization (so it can work with static export).
           static_site_generator: next
           
+      - name: Fix image optimization setting
+        run: |
+          # Restore unoptimized to false for proper image optimization
+          sed -i 's/unoptimized: true/unoptimized: false/' next.config.mjs
+          echo "Updated next.config.mjs:"
+          cat next.config.mjs
+          
       - name: Build
         run: pnpm build
         

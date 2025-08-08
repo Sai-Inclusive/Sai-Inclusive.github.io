@@ -1,4 +1,4 @@
-import Image from "next/image"
+import ExportedImage from "next-image-export-optimizer"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -96,7 +96,7 @@ export default function HomePage() {
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white shadow-2xl">
-                  <Image
+                  <ExportedImage
                     src="/assets/Sai-logo.png"
                     alt="SAI Inclusive Beauty Services"
                     width={400}
@@ -155,7 +155,7 @@ export default function HomePage() {
             </div>
             <div className="flex justify-center">
               <div className="relative">
-                <Image
+                <ExportedImage
                   src="/assets/Sai-logo.png"
                   alt="About SAI Inclusive"
                   width={350}
@@ -184,7 +184,7 @@ export default function HomePage() {
               <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md">
                 <CardContent className="p-6">
                   <div className="aspect-video bg-gradient-to-br from-gray-50 to-slate-50 rounded-lg mb-4 overflow-hidden">
-                    <Image
+                    <ExportedImage
                       src={service.image || "/placeholder.svg"}
                       alt={service.title}
                       width={400}

@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+import ExportedImage from "next-image-export-optimizer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -313,7 +313,7 @@ Website Contact Form
             </div>
             <div className="flex justify-center">
               <div className="relative">
-                <Image
+                <ExportedImage
                   src="/assets/Sai-logo.png"
                   alt="About SAI Inclusive Team"
                   width={350}

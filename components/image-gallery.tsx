@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
+import ExportedImage from "next-image-export-optimizer"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, X, Share2, Play, Pause } from "lucide-react"
@@ -421,7 +421,7 @@ export default function ImageGallery() {
             onClick={() => handleImageClick(image.id)}
           >
             <div className="aspect-square overflow-hidden bg-gray-100">
-              <Image
+              <ExportedImage
                 src={image.src || "/placeholder.svg"}
                 alt={image.alt}
                 width={400}
@@ -531,12 +531,12 @@ export default function ImageGallery() {
 
               {/* Main Image */}
               <div className="relative w-full h-full flex items-center justify-center p-8">
-                <Image
+                <img
                   src={selectedImageData.src || "/placeholder.svg"}
                   alt={selectedImageData.alt}
-                  width={800}
-                  height={800}
                   className="max-w-full max-h-full object-contain"
+                  loading="eager"
+                  style={{ maxWidth: '100%', maxHeight: '100%' }}
                 />
               </div>
 

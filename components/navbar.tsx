@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
+import ExportedImage from "next-image-export-optimizer"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import BookingModal from "@/components/booking-modal"
@@ -23,7 +23,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-10 h-10 relative">
-              <Image
+              <ExportedImage
                 src="/assets/apple-icon-180x180.png"
                 alt="SAI INCLUSIVE Logo"
                 width={40}

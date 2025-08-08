@@ -1,5 +1,5 @@
 import Link from "next/link"
-import Image from "next/image"
+import ExportedImage from "next-image-export-optimizer"
 import { Phone, MessageCircle, MapPin, Instagram, Mail, Clock } from "lucide-react"
 
 export default function Footer() {
@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="w-10 h-10 relative">
-                <Image
+                <ExportedImage
                   src="/assets/apple-icon-180x180.png"
                   alt="SAI INCLUSIVE Logo"
                   width={40}

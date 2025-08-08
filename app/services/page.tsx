@@ -1,4 +1,4 @@
-import Image from "next/image"
+import ExportedImage from "next-image-export-optimizer"
 import { Button } from "@/components/ui/button"
 import { MessageCircle, Calendar, Star, MapPin, Truck } from "lucide-react"
 import Navbar from "@/components/navbar"
@@ -124,7 +124,7 @@ export default function ServicesPage() {
               >
                 <div className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
                   <div className="aspect-video rounded-lg overflow-hidden shadow-xl">
-                    <Image
+                    <ExportedImage
                       src={service.image || "/placeholder.svg"}
                       alt={service.title}
                       width={600}

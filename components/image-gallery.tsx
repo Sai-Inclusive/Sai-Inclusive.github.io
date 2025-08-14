@@ -217,7 +217,7 @@ const galleryImages: GalleryImage[] = [
     src: "/assets/SkinCare/high-angle-woman-getting-massaged.jpg",
     alt: "Professional Massage Therapy",
     category: "skincare",
-    title: "Relaxing Massage Therapy",
+    title: "Facial Massage",
   },
   {
     id: 28,

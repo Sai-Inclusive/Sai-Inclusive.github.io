@@ -2,7 +2,7 @@
 
 Welcome to SAI Inclusive's official website repository. We are a premium beauty and fashion studio specializing in bridal services, traditional Aari work, custom garments, and comprehensive beauty treatments.
 
-[![Live Website](https://img.shields.io/badge/Website-Live-green?style=for-the-badge&logo=vercel)](https://saiinclusive.app)
+[![Live Website](https://img.shields.io/badge/Website-Live-green?style=for-the-badge&logo=globe)](https://saiinclusive.com)
 [![Instagram](https://img.shields.io/badge/Instagram-Follow-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/sai_inclusive)
 
 ## 🌟 About SAI Inclusive
@@ -61,10 +61,10 @@ This website is built with modern web technologies:
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/Sai-Inclusive/Sai-Inclusive.github.io.git
+git clone https://github.com/Sai-Inclusive/saiinclusive.com.git
 
 # Navigate to project directory
-cd Sai-Inclusive.github.io
+cd saiinclusive.com
 
 # Install dependencies
 pnpm install

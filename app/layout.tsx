@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
+import GoogleAnalytics from '@/components/google-analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -45,7 +46,10 @@ export default function RootLayout({
         <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className={GeistSans.className}>{children}</body>
+      <body className={GeistSans.className}>
+        <GoogleAnalytics />
+        {children}
+      </body>
     </html>
   )
 }

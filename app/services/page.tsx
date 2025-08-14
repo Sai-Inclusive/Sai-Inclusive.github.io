@@ -65,7 +65,7 @@ export default function ServicesPage() {
       icon: "👶",
     },
     {
-      title: "Beautician & Makeover",
+      title: "Beautician & Skin Care",
       description:
         "Professional beautician and makeover services showcasing various treatments with focus on client satisfaction and maintaining highest standards. Enhance your confidence with our expert care.",
       features: [

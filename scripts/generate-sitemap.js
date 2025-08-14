@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DOMAIN = 'https://sai-inclusive.github.io'; // Change to your actual domain if needed
+const DOMAIN = 'https://saiinclusive.com'; // Change to your actual domain if needed
 const PUBLIC_PATH = path.join(__dirname, '../public');
 const APP_PATH = path.join(__dirname, '../app');
 

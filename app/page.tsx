@@ -14,13 +14,13 @@ export default function HomePage() {
     {
       title: "Bridal Makeup",
       description: "Professional bridal makeup services for your special day",
-      image: "/assets/BridalMakeUp/1.png",
+      image: "/assets/BridalMakeUp/5.jpg",
       icon: "💄",
     },
     {
       title: "Bridal Aari Work",
       description: "Exquisite traditional aari work for bridal blouses",
-      image: "/assets/BridalArriWorks/1.png",
+      image: "/assets/BridalArriWorks/2.png",
       icon: "🪡",
     },
     {
@@ -32,13 +32,13 @@ export default function HomePage() {
     {
       title: "Kids Wear",
       description: "Beautiful and comfortable clothing for children",
-      image: "/assets/KidsWear/1.jpg",
+      image: "/assets/KidsWear/5.png",
       icon: "👶",
     },
     {
       title: "Skin Care",
       description: "Professional skincare treatments and consultations",
-      image: "/assets/SkinCare/spa-treatment-product-female-feet-hand-spa.jpg",
+      image: "/assets/SkinCare/high-angle-woman-getting-massaged.jpg",
       icon: "✨",
     },
   ]

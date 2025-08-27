@@ -18,6 +18,33 @@ interface GalleryImage {
 const IMAGES_PER_PAGE = 8 // 8 images per page for better mobile experience
 const AUTO_SCROLL_INTERVAL = 8000 // 8 seconds
 const MIN_SWIPE_DISTANCE = 50 // Minimum distance for a swipe to be registered
+const SHUFFLE_SEED = 42 // Fixed seed for consistent shuffling
+
+// Seeded random number generator
+function seededRandom(seed: number) {
+  let m = 0x80000000; // 2**31
+  let a = 1103515245;
+  let c = 12345;
+  let state = seed ? seed : Math.floor(Math.random() * (m - 1));
+  
+  return function() {
+    state = (a * state + c) % m;
+    return state / (m - 1);
+  };
+}
+
+// Fisher-Yates shuffle with seeded random
+function shuffleArrayWithSeed<T>(array: T[], seed: number): T[] {
+  const shuffled = [...array];
+  const random = seededRandom(seed);
+  
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  
+  return shuffled;
+}
 
 // Gallery images with actual photos
 const galleryImages: GalleryImage[] = [
@@ -27,52 +54,52 @@ const galleryImages: GalleryImage[] = [
     src: "/assets/BridalMakeUp/1.png",
     alt: "Professional Bridal Makeup Look 1",
     category: "makeup",
-    title: "Traditional Bridal Makeup",
+    title: "Air Brush Makeup",
   },
   {
     id: 2,
     src: "/assets/BridalMakeUp/2.png",
     alt: "Professional Bridal Makeup Look 2",
     category: "makeup",
-    title: "Modern Bridal Look",
+    title: "HD Makeup",
   },
   {
     id: 3,
     src: "/assets/BridalMakeUp/3.png",
     alt: "Professional Bridal Makeup Look 3",
     category: "makeup",
-    title: "South Indian Bridal Style",
+    title: "Glow Makeup",
   },
   {
     id: 4,
     src: "/assets/BridalMakeUp/4.jpg",
     alt: "Professional Bridal Makeup Look 4",
     category: "makeup",
-    title: "Elegant Bridal Makeup",
+    title: "Subtle Makeup",
   },
   {
     id: 5,
     src: "/assets/BridalMakeUp/5.jpg",
     alt: "Professional Bridal Makeup Look 5",
     category: "makeup",
-    title: "Glamorous Bridal Look",
+    title: "Elegant Bridal Makeup",
   },
   {
     id: 6,
     src: "/assets/BridalMakeUp/6.jpg",
     alt: "Professional Bridal Makeup Look 6",
     category: "makeup",
-    title: "Classic Bridal Style",
+    title: "Traditional Makeup",
   },
   
   // Bridal Aari Work Images
-  {
-    id: 7,
-    src: "/assets/BridalArriWorks/1.png",
-    alt: "Intricate Aari Work Design 1",
-    category: "aari",
-    title: "Intricate Aari Embroidery",
-  },
+  // {
+  //   id: 7,
+  //   src: "/assets/BridalArriWorks/1.png",
+  //   alt: "Intricate Aari Work Design 1",
+  //   category: "aari",
+  //   title: "Intricate Aari Embroidery",
+  // },
   {
     id: 8,
     src: "/assets/BridalArriWorks/2.png",
@@ -115,42 +142,42 @@ const galleryImages: GalleryImage[] = [
     src: "/assets/CustomizeGarments/1.png",
     alt: "Custom Garment Design 1",
     category: "garment",
-    title: "Custom Designer Blouse",
+    title: "Fusion & Style Lehenga",
   },
   {
     id: 14,
     src: "/assets/CustomizeGarments/2.jpg",
     alt: "Custom Garment Design 2",
     category: "garment",
-    title: "Elegant Evening Wear",
+    title: "Circular Panel Lehenga",
   },
   {
     id: 15,
     src: "/assets/CustomizeGarments/3.jpg",
     alt: "Custom Garment Design 3",
     category: "garment",
-    title: "Wedding Guest Outfit",
+    title: "Modern Print Lehenga",
   },
   {
     id: 16,
     src: "/assets/CustomizeGarments/4.jpg",
     alt: "Custom Garment Design 4",
     category: "garment",
-    title: "Designer Saree Blouse",
+    title: "Indo Western Lehenga",
   },
   {
     id: 17,
     src: "/assets/CustomizeGarments/5.jpg",
     alt: "Custom Garment Design 5",
     category: "garment",
-    title: "Custom Tailored Dress",
+    title: "Churidar",
   },
   {
     id: 18,
     src: "/assets/CustomizeGarments/6.jpg",
     alt: "Custom Garment Design 6",
     category: "garment",
-    title: "Bespoke Fashion Design",
+    title: " Indo Western Lehenga",
   },
   
   // Kids Wear Images
@@ -159,49 +186,49 @@ const galleryImages: GalleryImage[] = [
     src: "/assets/KidsWear/1.jpg",
     alt: "Kids Wear Design 1",
     category: "kids",
-    title: "Adorable Kids Outfit",
+    title: "Velvet Top and skirt",
   },
   {
     id: 20,
     src: "/assets/KidsWear/2.jpg",
     alt: "Kids Wear Design 2",
     category: "kids",
-    title: "Festive Kids Collection",
+    title: "Organza dress",
   },
   {
     id: 21,
     src: "/assets/KidsWear/3.jpg",
     alt: "Kids Wear Design 3",
     category: "kids",
-    title: "Traditional Kids Wear",
+    title: "Indo Western Dress",
   },
   {
     id: 22,
     src: "/assets/KidsWear/4.jpg",
     alt: "Kids Wear Design 4",
     category: "kids",
-    title: "Party Wear for Kids",
+    title: "Indo Western Wear",
   },
   {
     id: 23,
     src: "/assets/KidsWear/5.png",
     alt: "Kids Wear Design 5",
     category: "kids",
-    title: "Cute Kids Fashion",
+    title: "Traditional kids Wear",
   },
   {
     id: 24,
     src: "/assets/KidsWear/6.png",
     alt: "Kids Wear Design 6",
     category: "kids",
-    title: "Designer Kids Outfit",
+    title: "Traditional kids Wear",
   },
   {
     id: 25,
     src: "/assets/KidsWear/7.jpg",
     alt: "Kids Wear Design 7",
     category: "kids",
-    title: "Children's Special Wear",
+    title: "Casual dress",
   },
   
   // Skincare Images
@@ -242,13 +269,16 @@ const galleryImages: GalleryImage[] = [
   },
 ]
 
+// Shuffle the gallery images with a fixed seed for consistency
+const shuffledGalleryImages = shuffleArrayWithSeed(galleryImages, SHUFFLE_SEED)
+
 const categories = [
-  { id: "all", name: "All Work", count: galleryImages.length },
-  { id: "makeup", name: "Bridal Makeup", count: galleryImages.filter((img) => img.category === "makeup").length },
-  { id: "aari", name: "Aari Work", count: galleryImages.filter((img) => img.category === "aari").length },
-  { id: "garment", name: "Custom Garments", count: galleryImages.filter((img) => img.category === "garment").length },
-  { id: "kids", name: "Kids Wear", count: galleryImages.filter((img) => img.category === "kids").length },
-  { id: "skincare", name: "Skincare", count: galleryImages.filter((img) => img.category === "skincare").length },
+  { id: "all", name: "All Work", count: shuffledGalleryImages.length },
+  { id: "makeup", name: "Bridal Makeup", count: shuffledGalleryImages.filter((img) => img.category === "makeup").length },
+  { id: "aari", name: "Aari Work", count: shuffledGalleryImages.filter((img) => img.category === "aari").length },
+  { id: "garment", name: "Custom Garments", count: shuffledGalleryImages.filter((img) => img.category === "garment").length },
+  { id: "kids", name: "Kids Wear", count: shuffledGalleryImages.filter((img) => img.category === "kids").length },
+  { id: "skincare", name: "Skincare", count: shuffledGalleryImages.filter((img) => img.category === "skincare").length },
 ]
 
 export default function ImageGallery() {
@@ -263,7 +293,7 @@ export default function ImageGallery() {
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
   const filteredImages =
-    selectedCategory === "all" ? galleryImages : galleryImages.filter((img) => img.category === selectedCategory)
+    selectedCategory === "all" ? shuffledGalleryImages : shuffledGalleryImages.filter((img) => img.category === selectedCategory)
 
   // Pagination logic
   const totalPages = Math.ceil(filteredImages.length / IMAGES_PER_PAGE)
@@ -345,7 +375,7 @@ export default function ImageGallery() {
     setSelectedImage(filteredImages[nextIndex].id)
   }
 
-  const selectedImageData = galleryImages.find((img) => img.id === selectedImage)
+  const selectedImageData = shuffledGalleryImages.find((img) => img.id === selectedImage)
 
   // Touch/Swipe handlers
   const onTouchStart = (e: React.TouchEvent) => {

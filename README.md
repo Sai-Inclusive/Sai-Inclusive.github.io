@@ -4,6 +4,7 @@ Welcome to SAI Inclusive's official website repository. We are a premium beauty 
 
 [![Live Website](https://img.shields.io/badge/Website-Live-green?style=for-the-badge&logo=globe)](https://saiinclusive.com)
 [![Instagram](https://img.shields.io/badge/Instagram-Follow-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/sai_inclusive)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-Contact-25D366?style=for-the-badge&logo=whatsapp)](https://wa.me/919600745796)
 
 ## 🌟 About SAI Inclusive
 

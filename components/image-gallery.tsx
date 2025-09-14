@@ -100,13 +100,13 @@ const galleryImages: GalleryImage[] = [
   //   category: "aari",
   //   title: "Intricate Aari Embroidery",
   // },
-  {
-    id: 8,
-    src: "/assets/BridalArriWorks/2.png",
-    alt: "Intricate Aari Work Design 2",
-    category: "aari",
-    title: "Velvet Aari Work Blouse",
-  },
+  // {
+  //   id: 8,
+  //   src: "/assets/BridalArriWorks/2.png",
+  //   alt: "Intricate Aari Work Design 2",
+  //   category: "aari",
+  //   title: "Velvet Aari Work Blouse",
+  // },
   {
     id: 9,
     src: "/assets/BridalArriWorks/3.png",
@@ -128,13 +128,13 @@ const galleryImages: GalleryImage[] = [
     category: "aari",
     title: "Patch Work Blouse",
   },
-  {
-    id: 12,
-    src: "/assets/BridalArriWorks/6.png",
-    alt: "Intricate Aari Work Design 6",
-    category: "aari",
-    title: "Net Aari Work Blouse",
-  },
+  // {
+  //   id: 12,
+  //   src: "/assets/BridalArriWorks/6.png",
+  //   alt: "Intricate Aari Work Design 6",
+  //   category: "aari",
+  //   title: "Net Aari Work Blouse",
+  // },
   {
     id: 13,
     src: "/assets/BridalArriWorks/7.png",
